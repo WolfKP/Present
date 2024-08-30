@@ -59,9 +59,9 @@ Present is a web application built with Python, HTML, and CSS, designed for musi
     SQLALCHEMY_DATABASE_URI = "sqlite:///site.db"  # Adjust as needed
     ```
 
-## Local Usage
+## Running Locally
 
-- To try the application on your local machine, navigate to the cloned repository in your terminal, activate the virtual environment, do `flask run`, and then go to http://127.0.0.1:5000/ in your browser.
+- To run the application after installation, navigate to the cloned repository in your terminal, activate the virtual environment, do `flask run`, and then go to http://127.0.0.1:5000/ in your browser.
 
 ## Deployment
 
