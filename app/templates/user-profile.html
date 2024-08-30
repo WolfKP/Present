@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %} User Profile {% endblock %}
+{% block content %}
+    <div class="navigation-menu">
+        <div class="navigation-menu__title">
+            <h4>
+                Hi, {{ user.user_name }}.
+            </h4>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.studio', user_name= user.user_name) }}">
+                Studio
+            </a>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.attendance', user_name= user.user_name) }}">
+                Attendance
+            </a>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.user_profile', user_name= user.user_name) }}">
+                User Profile
+            </a>
+        </div>
+        <a class="link link--push-right" href="{{ url_for('main.logout') }}">
+            Logout
+        </a>
+    </div>
+    <div class="card-container">
+        <div class="card card--fix-height-i card--fix-width-iii">
+            <div class="card__content
+            card__content--padding-i">
+                <h1>
+                    Your Data
+                </h1>
+            </div>
+            <form method="POST" action="{{ url_for('main.your_data') }}">
+                {{ your_data_form.hidden_tag() }}
+                <div class="card__compartment 
+                card__compartment--border
+                card__compartment--margin-bottom-i
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--bold
+                    card__content--padding-left-i
+                    card__content--text-steelblue
+                    card__content--center-vertically">
+                        You have&nbsp;<span style="color: red;">{{studio_size}}</span>&nbsp;student record(s) being stored.
+                    </div>
+                    <div class="card__content
+                    card__content--push-right">
+                        {{ your_data_form.clear_studio(class_= "button") }}
+                    </div>
+                </div>
+                <div class="card__compartment 
+                card__compartment--border
+                card__compartment--margin-bottom-i
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--bold
+                    card__content--padding-left-i
+                    card__content--text-steelblue
+                    card__content--center-vertically">
+                        You have&nbsp;<span style="color: red;">{{attendance_history_size}}</span>&nbsp;attendance record(s) being stored.
+                    </div>
+                    <div class="card__content
+                    card__content--push-right">
+                        {{ your_data_form.clear_attendance_history(class_= "button") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card card--fix-height-i card--fix-width-ii">
+            <div class="card__content
+            card__content--padding-i">
+                <h1>
+                    Account Details
+                </h1>
+            </div>
+            <form method="POST" action="{{ url_for('main.account_details') }}">
+                {{ account_details_form.hidden_tag() }}
+                <div class="card__compartment 
+                card__compartment--border
+                card__compartment--margin-bottom-i
+                card__compartment--column
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii">
+                    <div class="card__compartment
+                    card__compartment--column
+                    card__compartment--width-iii">
+                        <div class="card__content
+                        card__content--padding-i">
+                            <label class="label">User Name: {{ user.user_name }}</label>
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ account_details_form.user_name(class_= "field") }}
+                        </div>
+                    </div>
+                    <div class="card__compartment
+                    card__compartment--column
+                    card__compartment--width-iii">
+                        <div class="card__content
+                        card__content--padding-i">
+                            <label class="label">Email: {{ user.email }}</label>
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ account_details_form.email(class_= "field") }}
+                        </div>
+                    </div>
+                    <div class="card__compartment
+                    card__compartment--column
+                    card__compartment--width-iii">
+                        <div class="card__content
+                        card__content--padding-i">
+                            <label class="label">
+                                Password: *HASH*
+                            </label>
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ account_details_form.password(class_= "field") }}
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ account_details_form.confirm_password(class_= "field") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card__compartment
+                card__compartment--margin-bottom-i
+                card__compartment--padding-i
+                card__compartment--very-bottom
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ account_details_form.update(class_= "button") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

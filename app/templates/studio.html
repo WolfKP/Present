@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Studio
+{% endblock %}
+
+{% block content %}
+    <div class="navigation-menu">
+        <div class="navigation-menu__title">
+            <h4>
+                Hi, {{ user.user_name }}.
+            </h4>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.studio', user_name= user.user_name) }}">
+                Studio
+            </a>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.attendance', user_name= user.user_name) }}">
+                Attendance
+            </a>
+        </div>
+        <div class="navigation-menu__item">
+            <a class="link" href="{{ url_for('main.user_profile', user_name= user.user_name) }}">
+                User Profile
+            </a>
+        </div>
+        <a class="link link--push-right" href="{{ url_for('main.logout') }}">
+            Logout
+        </a>
+    </div>
+    <div class="card-container">
+        <div class="card card--fix-height-i card--fix-width-iii">
+            <div class="card__content
+            card__content--padding-i">
+                <h1>
+                    Your Studio
+                </h1>
+            </div>
+            <div class="card__compartment 
+                card__compartment--border 
+                card__compartment--margin-bottom-i 
+                card__compartment--fixed-height 
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii">
+                <div class="card__content
+                card__content--bold
+                card__content--border-right 
+                card__content--padding-left-i
+                card__content--padding-i
+                card__content--padding-right-i
+                card__content--text-steelblue">
+                    Studio Size: <span style="color: red;">&nbsp;{{ studio_size }}</span> 
+                </div>
+                {% if studio_size %}
+                    <div class="card__content
+                    card__content--bold 
+                    card__content--border-right
+                    card__content--padding-i
+                    card__content--padding-left-i
+                    card__content--padding-right-i
+                    card__content--text-steelblue">
+                        Average Age: 
+                        {% if average_age %} 
+                            <span style="color: red;">&nbsp;{{ average_age | round(2) }}Y</span>
+                        {% else %}
+                            ...
+                        {% endif %} 
+                    </div>
+                    <div class="card__content
+                    card__content--bold 
+                    card__content--border-right
+                    card__content--padding-i
+                    card__content--padding-left-i
+                    card__content--padding-right-i
+                    card__content--text-steelblue">
+                        Sex Makeup: 
+                        {% for sex, count in sex_makeup %}
+                            {% if sex  != "" %}
+                                <span style="color: red;">&nbsp;[{{ sex }} - {{ ((count / studio_size) * 100) | round(2) }}%]</span>
+                            {% else %}
+                                <span style="color: red;">&nbsp;[... - {{ ((count / studio_size) * 100) | round(2) }}%]</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <form method="POST" action="{{ url_for('main.your_studio') }}">
+                    {{ your_studio_form.hidden_tag() }}
+                <div class="card__compartment 
+                card__compartment--border 
+                card__compartment--margin-bottom-i 
+                card__compartment--column 
+                card__compartment--fix-height-i 
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii">
+                    {% for student in current_students %}
+                        <div class="card__compartment 
+                        card__compartment--padding-ii
+                        card__compartment--width-ii
+                        card__compartment--border-bottom">
+                            <div class="card__content
+                            card__content--padding-i">
+                                <input type="checkbox" name="selected_students" value="{{ student.id }}">
+                            </div>
+                            <div class="card__content
+                            card__content--padding-i">
+                                {% if student.age %}
+                                    [{{ student.name }}] {{ student.age }}Y {{ student.sex }}
+                                {% else %}
+                                    [{{ student.name }}] {{ student.sex }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card__compartment
+                card__compartment--margin-bottom-i
+                card__compartment--padding-i
+                card__compartment--very-bottom
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ your_studio_form.mark_for_attendance(class_= "button") }}
+                    </div>
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ your_studio_form.delete(class_= "button") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card card--fix-height-i card--fix-width-ii">
+            <div class="card__content
+            card__content--padding-i">
+                <h1>
+                    New Student
+                </h1>
+            </div>
+            <form method="POST" action=" {{ url_for('main.new_student') }}">
+                {{ new_student_form.hidden_tag() }}
+                <div class="card__compartment 
+                card__compartment--border 
+                card__compartment--margin-bottom-i 
+                card__compartment--column 
+                card__compartment--padding-i 
+                card__compartment--shadow
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ new_student_form.name(class_="field", placeholder= "Name") }}
+                    </div>
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ new_student_form.age(class_= "field", placeholder= "Age") }}
+                    </div>
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ new_student_form.sex(class_= "field", placeholder= "Sex") }}
+                    </div>
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ new_student_form.instrument(class_= "field", placeholder= "Instrument") }}
+                    </div> 
+                </div>
+                <div class="card__compartment 
+                card__compartment--border 
+                card__compartment--margin-bottom-i 
+                card__compartment--padding-i
+                card__compartment--scroll
+                card__compartment--shadow
+                card__compartment--width-ii"> 
+                    <div class="card__compartment 
+                    card__compartment--column
+                    card__compartment--width-ii">
+                        <div class="card__content
+                        card__content--padding-i">
+                            <label class="label" for="start_date">
+                                Start Date
+                            </label>
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ new_student_form.start_date(class_= "field", id= "start_date") }}
+                        </div>
+                    </div>
+                    <div class="card__compartment 
+                    card__compartment--column
+                    card__compartment--width-ii">
+                        <div class="card__content
+                        card__content--padding-i">
+                            <label class="label" for="end_date">
+                                End Date
+                            </label>
+                        </div>
+                        <div class="card__content
+                        card__content--padding-i">
+                            {{ new_student_form.start_date(class_= "field", id= "end_date") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card__compartment
+                card__compartment--margin-bottom-i
+                card__compartment--padding-i  
+                card__compartment--very-bottom
+                card__compartment--width-ii">
+                    <div class="card__content
+                    card__content--padding-i">
+                        {{ new_student_form.add(class_= "button")}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

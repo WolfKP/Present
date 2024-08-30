@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Signup
+{% endblock %}
+
+{% block content %}
+    <div class="card card--center-stage card--fix-width-i">
+        <div class="card__content
+        card__content--padding-i">
+            <h1>
+                Signup
+            </h1>
+        </div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="card__compartment
+            card__compartment--border 
+            card__compartment--margin-bottom-i 
+            card__compartment--column 
+            card__compartment--padding-i
+            card__compartment--shadow
+            card__compartment--width-ii">
+                <div class="card__content
+                card__content--padding-i">
+                    {{ form.user_name(class_= "field", placeholder= "User Name") }}
+                </div>
+                <div class="card__content
+                card__content--padding-i">
+                    {{ form.email(class_=" field", placeholder= "Email") }}
+                </div>
+                <div class="card__content
+                card__content--padding-i">
+                    {{ form.password(class_= "field", placeholder= "Password") }}
+                </div>
+                <div class="card__content
+                card__content--padding-i">
+                    {{ form.confirm_password(class_= "field", placeholder= "Confirm Password")}}
+                </div>
+            </div>
+            <div class="card__compartment 
+            card__compartment--padding-i
+            card__compartment--scroll
+            card__compartment--width-ii">
+                <div class="card__content
+                card__content--padding-i">
+                    {{ form.submit(class_= "button") }}
+                </div>
+                <div class="card__content 
+                card__content--padding-i
+                card__content--push-right">
+                    <a class="link" href="{{ url_for('main.login') }}">
+                        Back
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

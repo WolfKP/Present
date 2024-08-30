@@ -1,0 +1,344 @@
+/* ---------- */ /* ---------- */ /* ---------- */
+
+/* ---------- */ /* ---------- */ /* ---------- */
+
+/* ---------- */
+/* scroll bar */
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: lightgray;
+}
+
+
+/* ---------- */
+/* body */
+
+body {
+    background: linear-gradient(to bottom, darkslategray, steelblue);
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+    min-width: 90vw;
+}
+
+
+/* ---------- */
+/* navigation menu */
+
+.navigation-menu {
+    background: linear-gradient(to right, papayawhip, azure);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .8);
+    display: flex;
+    padding: 6px 10px 4px;
+}
+
+.navigation-menu__title {
+    border-image: linear-gradient(to bottom, orange, lavender) 1;
+    border-right: 1px solid;
+    padding: 0 10px;
+}
+
+.navigation-menu__item {
+    align-items: center;
+    border-image: linear-gradient(to bottom, orange, lavender) 1;
+    border-right: 1px solid;
+    display: flex;
+    padding: 0 10px;
+}
+
+
+/* ---------- */
+/* link */
+
+.link {
+    color: steelblue;
+    font-size: 14px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+
+/* Pushes the link right in its container. */
+.link--push-right {
+    margin-left: auto;
+}
+
+.link:hover,
+.link--push-right:hover {
+    color: orange;
+}
+
+
+/* ---------- */
+/* label */
+
+.label {
+    font-size: 10px;
+}
+
+
+/* ---------- */
+/* field */
+
+.field {
+    background: linear-gradient(to right, white, azure);
+    border-radius: 4px;
+    font-family: inherit;
+    padding: 8px;
+    width: 100%;
+}
+
+
+/* ---------- */
+/* button */
+
+.button {
+    background-color: orange;
+    border-radius: 4px;
+    color: white;  
+    font-family: inherit;
+    font-size: 14px;
+    height: 30px;
+    padding-left: 14px;
+    padding-right: 20px; 
+}
+
+
+/* ---------- */
+/* flash message */
+
+.flash-message {
+    bottom: 0;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 2px;
+    position: fixed;
+    text-shadow: 0 0 6px orangered;   
+}
+
+/* ---------- */ /* ---------- */ /* ---------- */
+
+/* ---------- */ /* ---------- */ /* ---------- */
+
+/*
+card-container: For presenting cards.
+
+card: For presenting content. Within 'card', content can be grouped together in a 'card__compartment'.
+    |-- card__compartment: For grouping content.
+    |-- card__content: For directly wrapping the smallest unit of intelligible material on screen.
+*/
+
+/* ---------- */
+/* card container */
+
+.card-container {
+    align-items: center;
+    display: flex;
+    height: 90vh;
+    justify-content: space-evenly;
+}
+
+
+/* ---------- */
+/* card */
+
+.card {
+    background: papayawhip;
+    border-image: linear-gradient(to bottom, orange, darkorange) 1;
+    border-left: 10px solid;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .8);
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+}
+
+/* Applies "center stage" (center horizontally, and sit just above the vertical center point). */
+.card--center-stage {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+/* Fixes the height. */
+.card--fix-height-i {
+    height: 66vh;
+    max-height: 66vh;
+}
+
+/* Fixes the width to 16vw. */
+.card--fix-width-i {
+    max-width: 16vw;
+    width: 16vw;
+}
+
+/* Fixes the width to 20vw. */
+.card--fix-width-ii {
+    max-width: 20vw;
+    width: 20vw;
+}
+
+/* Fixes the width to 62vw. */
+.card--fix-width-iii {
+    max-width: 58vw;
+    width: 58vw;
+}
+
+
+/* ---------- */
+/* card compartment */
+
+.card__compartment {
+    display: flex;
+}
+
+/* Applies a border. */
+.card__compartment--border {
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+
+/* Applies a bottom border. */
+.card__compartment--border-bottom {
+    border-bottom: .5px solid;
+    border-image: linear-gradient(to right, steelblue, papayawhip) 1;
+}
+
+/* Applies a bottom margin. */
+.card__compartment--margin-bottom-i {
+    margin-bottom: 10px;
+}
+
+/* Sets the main axis to column. */
+.card__compartment--column {
+    flex-direction: column;
+}
+
+/* Fixes the height. */
+.card__compartment--fix-height-i {
+    height: 30vh;
+    max-height: 30vh;
+}
+
+/* Applies 4px of padding. */
+.card__compartment--padding-i {
+    padding: 4px;
+}
+
+/* Applies 8px of padding. */
+.card__compartment--padding-ii {
+    padding: 6px;
+}
+
+/* Applies a scroll bar. */
+.card__compartment--scroll {
+    overflow: scroll;
+}
+
+/* Applies a shadow. */
+.card__compartment--shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .35);
+}
+
+/* Positions the compartment at the very bottom of its card. */
+.card__compartment--very-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+/* Sets the width to 50%. of its container. */
+.card__compartment--width-i {
+    width: 80%;
+}
+
+/* Sets the width to 94%. of its container. */
+.card__compartment--width-ii {
+    width: 94%;
+}
+
+/* Sets the width to 100%. of its container. */
+.card__compartment--width-iii {
+    width: 100%;
+}
+
+
+/* ---------- */
+/* card content */
+
+.card__content {
+    display: flex;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Makes the text bold. */
+.card__content--bold {
+    font-weight: bold;
+}
+
+/* Applies a right border. */
+.card__content--border-right {
+    border-image: linear-gradient(to bottom, darkorange, lavender) 1;
+    border-right: 1px solid;
+}
+
+/* Makes the text italic. */
+.card__content--italic {
+    font-style: italic;
+}
+
+/* Applies padding */
+.card__content--padding-i {
+    padding: 3px;
+}
+
+/* Applies left padding. */
+.card__content--padding-left-i {
+    padding-left: 10px;
+}
+
+/* Applies right padding. */
+.card__content--padding-right-i {
+    padding-right: 10px;
+}
+
+/* Pushes the link far right in its container. */
+.card__content--push-right {
+    margin-left: auto;
+}
+
+/* Makes the text steelblue. */
+.card__content--text-steelblue {
+    color: steelblue;
+}
+
+/* Vertically centers the item within. */
+.card__content--center-vertically {
+    align-items: center;
+}
+
+/* Sets the width to 50% of its container. */
+.card__content--width-i {
+    width: 50%;
+}
