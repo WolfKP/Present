@@ -1,6 +1,6 @@
 # Present
 
-Present is a web application built with Python, HTML, and CSS, designed for music teachers to efficiently track and communicate their studio's attendance. Present also offers an easy-to-use interface for handling basic student information and calculating related summary statistics.
+Present is a web application built with Python, HTML, and CSS, designed for music teachers to efficiently track and communicate their studio's attendance. It also offers an easy-to-use interface for handling basic student information and calculating related summary statistics.
 
 ## Features and Quirks
 
