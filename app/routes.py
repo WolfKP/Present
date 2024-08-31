@@ -76,9 +76,9 @@ def studio(user_name):
     new_student_form= NewStudentForm()
     your_studio_form= YourStudioForm()
     current_students= Student.query.filter_by(user_id= current_user.id).all()
-    studio_size= Student.query.count()
-    average_age= db.session.query(db.func.avg(Student.age)).scalar()
-    sex_makeup= db.session.query(Student.sex, db.func.count(Student.sex)).group_by(Student.sex).all()
+    studio_size= Student.query.filter_by(user_id= current_user.id).count()
+    average_age= db.session.query(db.func.avg(Student.age)).filter_by(user_id= current_user.id).scalar()
+    sex_makeup= db.session.query(Student.sex, db.func.count(Student.sex)).filter_by(user_id= current_user.id).group_by(Student.sex).all()
 
     return render_template("studio.html", 
                            user= current_user, 
@@ -336,8 +336,8 @@ def user_profile(user_name):
     your_data_form= YourDataForm()
     account_details_form= AccountDetailsForm()
 
-    studio_size= Student.query.count()
-    attendance_history_size= Attendance.query.count()
+    studio_size= Student.query.filter_by(user_id= current_user.id).count()
+    attendance_history_size= Attendance.query.filter_by(user_id= current_user.id).count()
 
     return render_template("user-profile.html", 
                            user= current_user,
@@ -354,12 +354,12 @@ def your_data():
 
     if form.clear_studio.data:
 
-        Student.query.delete()
+        Student.query.filter_by(user_id= current_user.id).delete()
         db.session.commit()
 
     else:
 
-        Attendance.query.delete()
+        Attendance.query.filter_by(user_id= current_user.id).delete()
         db.session.commit()
 
     return redirect(url_for("main.user_profile", user_name= current_user.user_name))   
