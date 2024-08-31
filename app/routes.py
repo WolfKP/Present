@@ -413,4 +413,3 @@ def account_details():
 
     return redirect(url_for("main.user_profile", 
                             user_name= current_user.user_name))
-    
